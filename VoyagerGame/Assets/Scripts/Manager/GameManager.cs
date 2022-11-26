@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
         List<Vector3> monsterPositionList = boardManager.GenerateRandomPosition(nInitialMonster,
-            new Vector3[] { players[0].transform.position, players[1].transform.position },
+            new Vector3[] { players[0].transform.position },
             6f);
         // spawn Boss
         if (SceneManager.GetActiveScene().name.Substring(6) != "1")
@@ -125,17 +125,13 @@ public class GameManager : MonoBehaviour
 
     public void removeCharacter(GameObject player)
     {
+        // double check for sure
         if (playerManager.playerA == player)
         {
             playerManager.playerA = null;
-        }
-        else
-        {
-            playerManager.playerB = null;
-        }
-        if (playerManager.playerA == null && playerManager.playerB == null)
             gameOverState();
-        Destroy(player);
+            Destroy(player);
+        }
     }
 
     private void winGameState()

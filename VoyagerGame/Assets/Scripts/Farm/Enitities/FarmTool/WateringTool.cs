@@ -6,18 +6,12 @@ public class WateringTool : FarmTool
 {
 	public override void Collect(FarmerController farmer)
 	{
-		throw new System.NotImplementedException();
+		farmer.collectFarmTool(this);
+		this.gameObject.SetActive(false);
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public override void Use(FarmerController farmer)
+	{
+		farmer.GetComponent<Animator>().SetTrigger("ActionWatering");
+	}
 }

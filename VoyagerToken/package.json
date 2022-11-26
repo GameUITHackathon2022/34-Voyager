@@ -1,0 +1,29 @@
+{
+  "name": "voyager-token",
+  "version": "1.0.0",
+  "description": "Building Voyager Token on Ethereum using ERC20 standard, Hardhat and Ethers.js. Then, using express to create a simple json api server to interact with the smart contract.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js",
+    "deploy-token": "hardhat run scripts/VoyagerTokenDeploy.js --network localhost",
+    "deploy-nft": "hardhat run scripts/VoyagerNFTDeploy.js --network localhost",
+    "hardhat-console": "hardhat console --network localhost",
+    "compile": "hardhat compile",
+    "clean": "hardhat clean",
+    "testnet": "hardhat node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.2",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0",
+    "ethers": "^5.7.2",
+    "express": "^4.18.2"
+  }
+}

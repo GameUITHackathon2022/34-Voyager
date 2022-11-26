@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class FarmTool : Collectable
+public abstract class FarmTool : MonoBehaviour
 {
-	Animator animator;
-	public override void Collect(PlayerController player)
-	{
-		throw new System.NotImplementedException();
-	}
 
-	public override void Use()
-	{
-		throw new System.NotImplementedException();
-	}
+	public abstract void Use(FarmerController farmer);
 
 	public abstract void Collect(FarmerController farmer);
 }

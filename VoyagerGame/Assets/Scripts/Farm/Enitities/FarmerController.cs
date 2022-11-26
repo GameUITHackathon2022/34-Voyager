@@ -11,14 +11,12 @@ public class FarmerController : MonoBehaviour
     private Rigidbody2D rigidbody;
     private Collider2D collider;
 
-    [SerializeField]
-    private GameObject Tool;
 
     private Vector2 movement;
 
-    // private List<FarmTool> toolList = new List<FarmTool>();
-    private FarmTool currentFarmTool;
-
+    private List<FarmTool> toolList = new List<FarmTool>();
+    public FarmTool currentFarmTool;
+    
 	// Start is called before the first frame update
 	void Start()
     {
@@ -51,7 +49,8 @@ public class FarmerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
 		{
-
+            // useFarmTool();
+            interactAround(collider.bounds.center, PICKUP_RANGE);
 		}
     }
 
@@ -77,19 +76,36 @@ public class FarmerController : MonoBehaviour
         }
     }
 
+    private void interactAround(Vector2 position, float pickupRange)
+	{
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, pickupRange);
+        foreach (Collider2D c in colliders)
+        {
+            Debug.Log(c);
+            FarmInteractable item = c.GetComponent<FarmInteractable>();
+            if (item != null)
+            {
+                item.Interact(this);
+            }
+        }
+    }
+
     private void useFarmTool()
 	{
         if (currentFarmTool == null)
 		{
             return;
 		}
-        currentFarmTool.Use();
+        currentFarmTool.Use(this);
 	}
-
 
     public void collectFarmTool(FarmTool tool)
 	{
-        currentFarmTool = tool;
-	}
-
+        if (tool == null)
+            return;
+        // currentFarmTool = tool;
+        tool.transform.SetParent(transform);
+        toolList.Add(tool);
+        Debug.Log(toolList);
+    }
 }

@@ -6,8 +6,8 @@ using UnityEditor;
 
 public class SkinManager : MonoBehaviour
 {
+    public static int MALE_OFFSET = 2;
     // Start is called before the first frame update
-    public char PLAYER_NAME;
     private Image sprite;
     public Image player;
     public List<Sprite> skins = new List<Sprite>();
@@ -36,15 +36,15 @@ public class SkinManager : MonoBehaviour
     public void SaveSkin()
 	{
         GameObject obj;
-        if (PLAYER_NAME == 'A')
+        if (selectedSkin < MALE_OFFSET)
 		{
-            obj = Resources.Load("Player/Male/PlayerA_" + selectedSkin) as GameObject;
+            obj = Resources.Load("Player/Male/PlayerA_" + (selectedSkin + 1)) as GameObject;
         } else
 		{
-            obj = Resources.Load("Player/Female/PlayerB_" + selectedSkin) as GameObject;
+            obj = Resources.Load("Player/Female/PlayerB_" + (selectedSkin - MALE_OFFSET + 1)) as GameObject;
         }
         player.sprite = obj.GetComponent<SpriteRenderer>().sprite;
       
-        PlayerPrefs.SetInt("Skin" + PLAYER_NAME, selectedSkin);
+        PlayerPrefs.SetInt("SkinA", selectedSkin);
     }
 }
