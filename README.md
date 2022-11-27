@@ -14,17 +14,24 @@ Players can play the role of a farmer and build their own small farm. In it, the
 
 ### About EcoCollector
 
-- In this game, user can grow their own trees, this activities helps them claiming some cryptocurrency.
+- In this game, user can grow their own trees, this activities help them claiming some cryptocurrencies.
 
 | ![](https://i.imgur.com/cVNUftN.png) |
 |:------------------------------------:|
 | Map in farm |
 
-- Then, they can use their money to buy tickets for explore the mazes. In these mazes, they can move up, down, left, right to avoid obstacles and divide garbage types. At the end, they can earn some voucher or specific items in game.
+- Then, they can use their money to buy tickets for explore the mazes. In these mazes, they can move up, down, left, right to avoid obstacles and sort the garbage. At the end, they can earn some voucher or specific items in game, and get to know some facts about environment.
 
 |![](https://i.imgur.com/sskKMBi.jpg) |
 |:------------------------------------:|
 | Map in maze |
+
+
+
+
+|![](https://i.imgur.com/WzTjDrs.png)|
+|:------------------------------------:|
+| Winning screen |
 
 ### About EcoCollector app
 
