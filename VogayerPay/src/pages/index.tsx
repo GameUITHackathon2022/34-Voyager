@@ -1,14 +1,49 @@
-import Head from "next/head";
-import Image from "next/image";
-import Footer from "../components/layouts/Footer";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import Container from "../components/layouts/Container";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { Transactions } from "../api/transactions/types";
+import { getTransactionsFn } from "../api/transactions/useGetTransactions";
+import { Balance } from "../api/wallet/types";
+import { getBalanceFn } from "../api/wallet/useGetBalance";
+import { WalletPage } from "../modules/wallet/WalletPage";
 
-export default function Home() {
+type Props = {
+  resBalance: Balance;
+  resTransactions: Transactions;
+};
+
+export default function Wallet(
+  _props: InferGetServerSidePropsType<typeof getServerSideProps>
+) {
   return (
-    <Container>
-      <h1>Hello</h1>
-    </Container>
+    <WalletPage
+      resBalance={_props.resBalance}
+      resTransactions={_props.resTransactions}
+    />
   );
 }
+
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  let resBalance = {} as Balance;
+  let resTransactions = {} as Transactions;
+  await getBalanceFn()
+    .then((res) => (resBalance = res))
+    .catch((error) => console.log(error));
+  await getTransactionsFn()
+    .then((res) => (resTransactions = res))
+    .catch((error) => console.log(error));
+  if (resBalance.status !== "Success") {
+    return {
+      notFound: true,
+    };
+  }
+  if (resTransactions.status !== "Success") {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: {
+      resBalance: resBalance,
+      resTransactions: resTransactions,
+    },
+  };
+};

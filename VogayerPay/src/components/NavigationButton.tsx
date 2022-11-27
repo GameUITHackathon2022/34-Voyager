@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import cn from "classnames";
 
 type Props = {
@@ -22,22 +22,19 @@ export default function NavigationButton({
     <div>
       <Link href={href} legacyBehavior>
         <a className="w-full h-full bg-white flex flex-col space-y-2 px-2 items-center justify-center">
-          <Image
-            src={icon}
-            alt=""
-            className={cn({ hidden: active })}
-            width={24}
-            height={24}
-          />
-
-          <Image
-            src={activeIcon}
-            alt=""
-            className={cn({ hidden: !active })}
-            width={24}
-            height={24}
-          />
-          <p className="text-body14 text-neutral-300 font-medium">{title}</p>
+          <div className={cn("w-6 h-6 relative", { hidden: active })}>
+            <Image src={icon} alt="" layout="fill" />
+          </div>
+          <div className={cn("w-6 h-6 relative", { hidden: !active })}>
+            <Image src={activeIcon} alt="" layout="fill" />
+          </div>
+          <p
+            className={cn("text-body14 font-medium", {
+              "text-[#045299]": active,
+              "text-[#808080]": !active,
+            })}>
+            {title}
+          </p>
         </a>
       </Link>
     </div>

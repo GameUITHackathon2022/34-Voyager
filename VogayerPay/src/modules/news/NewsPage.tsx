@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import type { FC } from "react";
 import Container from "../../components/layouts/Container";
 import Header from "../../components/layouts/Header";
@@ -8,9 +7,8 @@ import NewsItem from "./NewsItem";
 type Props = {};
 
 export const NewsPage: FC<Props> = () => {
-  const router = useRouter();
   return (
-    <Container>
+    <Container title="News">
       <Header />
       <div className="px-4 mx-auto pt-8 flex flex-col space-y-6">
         {newsData.map((item) => (

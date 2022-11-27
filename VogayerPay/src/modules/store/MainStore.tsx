@@ -1,9 +1,8 @@
-import cn from "classnames";
-
 import { StarIcon } from "@heroicons/react/20/solid";
-
+import cn from "classnames";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import AddItemSuccessModal from "../../components/AddItemSuccessModal";
 
 const products = [
   {
@@ -89,60 +88,65 @@ const products = [
 ];
 
 export default function MainStore() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  function openModal() {
+    setIsOpen(true);
+  }
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl overflow-hidden sm:px-6 lg:px-8">
-        <div className="-mx-px grid grid-cols-2 border-l border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
-          {products.map((product) => (
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+          {products.map((product, idx) => (
             <div
               key={product.id}
-              className="group relative border-r border-b border-gray-200 p-4 sm:p-6">
-              <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
-                <div className="w-full h-full relative">
-                  <Image
-                    src={product.imageSrc}
-                    alt={product.imageAlt}
-                    layout="fill"
-                  />
-                </div>
+              className="shadow-shadow8 rounded-2xl flex flex-row bg-[#FFF2EA]">
+              <div className="relative aspect-square h-full z-10 flex-none rounded-3xl mr-4">
+                <Image
+                  src={product.imageSrc}
+                  alt={product.imageAlt}
+                  layout="fill"
+                />
               </div>
-              <div className="pt-10 pb-4 text-center">
+              <div className="grow py-4">
                 <h3 className="text-sm font-medium text-gray-900">
-                  <Link href={product.href} legacyBehavior passHref>
-                    <a>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {product.name}
-                    </a>
-                  </Link>
+                  {product.name}
                 </h3>
-                <div className="mt-3 flex flex-col items-center">
-                  <p className="sr-only">{product.rating} out of 5 stars</p>
-                  <div className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
-                      <StarIcon
-                        key={rating}
-                        className={cn(
-                          product.rating > rating
-                            ? "text-yellow-400"
-                            : "text-gray-200",
-                          "flex-shrink-0 h-5 w-5"
-                        )}
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {product.buyCount} times
-                  </p>
+
+                <div className="flex items-center grow my-3">
+                  {[0, 1, 2, 3, 4].map((rating) => (
+                    <StarIcon
+                      key={rating}
+                      className={cn(
+                        product.rating > rating
+                          ? "text-yellow-400"
+                          : "text-gray-200",
+                        "flex-shrink-0 h-5 w-5"
+                      )}
+                      aria-hidden="true"
+                    />
+                  ))}
                 </div>
-                <p className="mt-4 text-base font-medium text-gray-900">
+                <p className="relative text-lg font-semibold text-gray-800 bg-transparent z-20">
                   {product.price}
                 </p>
+              </div>
+              <div className="mt-6 px-4 pb-4 flex-none flex items-center">
+                <button
+                  className="relative flex items-center justify-center rounded-md border border-gray-400 bg-[#DFEFFB] py-2 px-4 text-body16 text-gray-900 hover:bg-lime-200 font-bold "
+                  onClick={() => setIsOpen(true)}>
+                  Add
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <AddItemSuccessModal isOpen={isOpen} handleClose={closeModal} />
     </div>
   );
 }

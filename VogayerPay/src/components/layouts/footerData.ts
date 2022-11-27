@@ -8,10 +8,10 @@ export const footerData = [
   },
   {
     id: 2,
-    icon: "/static/icons/Clock.svg",
-    activeIcon: "/static/icons/ActiveClock.svg",
-    title: "History",
-    href: "/history",
+    icon: "/static/icons/ShoppingCart.svg",
+    activeIcon: "/static/icons/ActiveShoppingCart.svg",
+    title: "Cart",
+    href: "/shopping-carts",
   },
   {
     id: 3,
@@ -23,8 +23,8 @@ export const footerData = [
   {
     id: 4,
     icon: "/static/icons/Wallet.svg",
-    activeIcon: "/staitc/icons/ActiveWallet.svg",
+    activeIcon: "/static/icons/ActiveWallet.svg",
     title: "Wallet",
-    href: "/wallet",
+    href: "/",
   },
 ];

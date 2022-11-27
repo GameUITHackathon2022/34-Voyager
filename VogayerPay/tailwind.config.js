@@ -4,7 +4,6 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
  @type {Record<"sans" | "serif" | "mono", string[]> & {gilroy: string[]}}
 */
 module.exports = {
-  mode: "jit",
   plugins: [],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",

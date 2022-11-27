@@ -1,5 +1,7 @@
-import { CalendarIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import Image from "next/image";
+import { CalendarIcon } from "@heroicons/react/20/solid";
+import Image from "next/legacy/image";
+import { useState } from "react";
+import MergeItemSuccessModal from "../../components/MergeItemsSuccessModal";
 const mergeItems = [
   {
     id: 1,
@@ -207,8 +209,18 @@ const mergeItems = [
 ];
 
 export default function MergeProduceItem() {
+  const [type, setType] = useState<null | number>(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  function openModal() {
+    setIsOpen(true);
+  }
   return (
-    <div className="overflow-hidden bg-white shadow sm:rounded-md">
+    <div className="overflow-hidden shadow sm:rounded-md">
       <ul role="list" className="divide-y divide-gray-200">
         {mergeItems.map((position) => (
           <li key={position.id}>
@@ -239,7 +251,7 @@ export default function MergeProduceItem() {
                       {position.produces.map((produce, idx) => (
                         <div
                           key={idx}
-                          className="h-6 w-6 border-2 border-white rounded-full relative">
+                          className="h-6 w-6 border-2 border-white rounded-full relative overflow-hidden">
                           <Image
                             src={produce.image}
                             alt={produce.name}
@@ -252,7 +264,12 @@ export default function MergeProduceItem() {
                 </div>
                 {position.receive ? (
                   <div className="ml-5 flex-shrink-0">
-                    <button className="bg-green-200 text-emerald-800 px-4 py-1 rounded-md">
+                    <button
+                      className="bg-green-200 text-emerald-800 px-4 py-1 rounded-md"
+                      onClick={() => {
+                        setType(position.id);
+                        setIsOpen(true);
+                      }}>
                       Receive
                     </button>
                   </div>
@@ -262,6 +279,13 @@ export default function MergeProduceItem() {
           </li>
         ))}
       </ul>
+      {type !== null ? (
+        <MergeItemSuccessModal
+          type={type}
+          isOpen={isOpen}
+          handleClose={closeModal}
+        />
+      ) : null}
     </div>
   );
 }

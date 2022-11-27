@@ -14,11 +14,10 @@ const tabs = [
 ];
 
 export const StorePage: FC<Props> = () => {
-  const router = useRouter();
   return (
-    <Container>
-      <section className="py-10 bg-white">
-        <div className="w-full max-w-md px-2 py-16 sm:px-0">
+    <Container title="Store">
+      <section className="bg-[#FFF2EA]">
+        <div className="w-full max-w-md px-2 sm:px-0 py-4">
           <Tab.Group>
             <Tab.List className="flex space-x-1 p-1">
               {tabs.map((tab, idx) => (

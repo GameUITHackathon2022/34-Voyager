@@ -8,15 +8,20 @@ import Footer from "./Footer";
 
 type ContainerProps = {
   children: ReactNode;
+  title: string;
   blank?: boolean;
 };
-export default function Container({ children, blank = false }: ContainerProps) {
+export default function Container({
+  children,
+  blank = false,
+  title,
+}: ContainerProps) {
   const router = useRouter();
 
   return (
     <>
       <NextSeo
-        title=""
+        title={title}
         titleTemplate={`%s`}
         defaultTitle={""}
         description=""

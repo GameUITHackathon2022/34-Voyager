@@ -1,0 +1,23 @@
+[
+    {
+        "name": "test",
+        "discription": "test",
+        "image": "https://i.imgur.com/Pg6IOZf.png",
+        "rarity": "common",
+        "price": "0.1"
+    },
+    {
+        "name": "test2",
+        "discription": "test2",
+        "image": "https://i.imgur.com/pYuUnNZ.png",
+        "rarity": "legend",
+        "price": "0.5"
+    },
+    {
+        "name": "test3",
+        "discription": "test3",
+        "image": "https://i.imgur.com/DnJbodY.png",
+        "rarity": "rare",
+        "price": "0.3"
+    }
+]
